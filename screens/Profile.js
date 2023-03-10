@@ -104,7 +104,7 @@ elevation: 4}}>
       <Button onPress= {()=>{
         AsyncStorage.removeItem("sessionToken");
         props.setLoggedInState('NOT_LOGGED_IN')
-        }} title='Logout'/>
+        }} title='Logout'/> 
     </View>
     </CardContent>
     </Card>
