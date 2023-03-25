@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, Image, Share, Linking} from 'react-native';
+import React, { useState, useEffect, useRef, } from 'react';
+import { StyleSheet, Text, TouchableOpacity, View, Image, Share, Linking, Button} from 'react-native';
 import { Accelerometer } from 'expo-sensors';
 import getSpikesFromAccelerometer from '../utils/StepCalculator';
 import CircularProgress from 'react-native-circular-progress-indicator';
@@ -15,6 +15,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 // import { Button } from 'react-native-elements';
 // import { IconButton } from 'react-native-paper';
 
+const loggedInStates={
+  NOT_LOGGED_IN:'NOT_LOGGED_IN',
+  LOGGED_IN:'LOGGED_IN',
+  LOGGING_IN:'LOGGING_IN'
+}
 
 export default function Counter(props) {
  const [completionCount, setCompletionCount] = useState(0);
@@ -22,6 +27,20 @@ export default function Counter(props) {
  const [score, setScore] = useState(0);
 
  const [currentScreen, setCurrentScreen] = useState('counter');
+
+
+ const myCustomerShare = async() =>{
+  const shareOptions = {
+    message: 'https://stedibalance.com'
+  }
+  try{
+    const shareResponse = await Share.share(shareOptions)
+    console.log(shareResponse);
+    }
+    catch(error){
+console.log('Error', error)
+    }
+  }
 
  useEffect(()=>{//gets username and token from storage
   const getUserName = async ()=>{
@@ -321,6 +340,7 @@ elevation: 4}}>
    <Image source={exerciseImg}  style={styles.image} ></Image>
 <CardContent>
   <Text style={styles.text}>Step Quickly</Text>
+  <Button onPress={myCustomerShare} title="Add Spotter" />
   <TouchableOpacity
      onPress={ subscription ? _unsubscribe : _subscribe}
       style={styles.button}

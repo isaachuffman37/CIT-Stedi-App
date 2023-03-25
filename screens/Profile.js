@@ -48,7 +48,7 @@ const Profile = (props) => {
 
   const myCustomerShare = async() =>{
     const shareOptions = {
-      message: 'This is a test'
+      message: 'https://stedibalance.com'
     }
     try{
       const shareResponse = await Share.share(shareOptions)
@@ -81,7 +81,7 @@ const Profile = (props) => {
       </View>
       )
     } else {
-  return (
+   return (
     <SafeAreaView style={{flex: 1}}>
          <Card style={{backgroundColor:'white', borderRadius: 10, margin:20 ,width: 320, shadowColor: "#000",
 shadowOffset: {
